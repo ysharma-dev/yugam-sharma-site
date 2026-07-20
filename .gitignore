@@ -41,4 +41,4 @@ yarn-error.log*
 next-env.d.ts
 
 # generated at build time (prebuild)
-/public/resume.pdf
+/public/yugam-sharma-resume.pdf

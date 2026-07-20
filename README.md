@@ -9,7 +9,7 @@ Vercel.
 ```bash
 npm install
 npm run dev        # http://localhost:3000
-npm run build      # production build (also regenerates public/resume.pdf)
+npm run build      # production build (also regenerates public/yugam-sharma-resume.pdf)
 npm run generate:pdf   # regenerate the resume PDF only
 ```
 
@@ -24,7 +24,7 @@ data/         Typed data layer — resume.ts (single source of truth for the
               resume page AND the PDF), site.ts (nav, links, metadata)
 lib/          Utilities — blog.ts (filesystem MDX loading)
 scripts/      generate-resume-pdf.tsx — renders data/resume.ts to
-              public/resume.pdf at build time (prebuild hook)
+              public/yugam-sharma-resume.pdf at build time (prebuild hook)
 ```
 
 ## Adding a blog post

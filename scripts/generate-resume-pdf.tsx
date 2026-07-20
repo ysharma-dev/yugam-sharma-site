@@ -1,5 +1,5 @@
 /**
- * Renders data/resume.ts to public/resume.pdf.
+ * Renders data/resume.ts to public/yugam-sharma-resume.pdf.
  * Runs automatically before `next build` (see the "prebuild" npm script);
  * run manually with: npm run generate:pdf
  */
@@ -105,7 +105,7 @@ function ResumePdf() {
 
         <Section title="Experience">
           {resume.experience.map((job) => (
-            <View key={`${job.company}-${job.title}`}>
+            <View key={`${job.company}-${job.title}`} wrap={false}>
               <View style={styles.jobHeader}>
                 <Text style={styles.jobTitle}>
                   {job.title} · {job.company}
@@ -146,7 +146,7 @@ function ResumePdf() {
 
         <Section title="Education">
           {resume.education.map((edu) => (
-            <View key={edu.degree}>
+            <View key={edu.degree} wrap={false}>
               <View style={styles.jobHeader}>
                 <Text style={styles.jobTitle}>
                   {edu.degree} · {edu.school} — {edu.location}
@@ -168,7 +168,7 @@ function ResumePdf() {
 }
 
 async function main() {
-  const outPath = path.join(process.cwd(), "public", "resume.pdf");
+  const outPath = path.join(process.cwd(), "public", "yugam-sharma-resume.pdf");
   // public/ may not exist in a fresh clone: resume.pdf is gitignored and git
   // does not track empty directories.
   fs.mkdirSync(path.dirname(outPath), { recursive: true });

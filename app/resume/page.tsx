@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import { resume } from "@/data/resume";
 import { Section } from "@/components/Section";
+import {
+  DownloadIcon,
+  MailIcon,
+  MapPinIcon,
+  GitHubIcon,
+  LinkedInIcon,
+} from "@/components/icons";
 
 export const metadata: Metadata = {
   title: "Resume",
@@ -18,21 +25,44 @@ export default function ResumePage() {
           <p className="mt-1 text-lg text-zinc-600 dark:text-zinc-400">
             {resume.headline}
           </p>
-          <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
-            {resume.location} ·{" "}
+          <p className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-zinc-500 dark:text-zinc-400">
+            <span className="inline-flex items-center gap-1.5">
+              <MapPinIcon size={14} />
+              {resume.location}
+            </span>
             <a
               href={`mailto:${resume.email}`}
-              className="underline-offset-4 hover:underline"
+              className="inline-flex items-center gap-1.5 underline-offset-4 hover:underline"
             >
+              <MailIcon size={14} />
               {resume.email}
+            </a>
+            <a
+              href={resume.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 underline-offset-4 hover:underline"
+            >
+              <GitHubIcon size={14} />
+              GitHub
+            </a>
+            <a
+              href={resume.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 underline-offset-4 hover:underline"
+            >
+              <LinkedInIcon size={14} />
+              LinkedIn
             </a>
           </p>
         </div>
         <a
-          href="/resume.pdf"
-          download="Yugam-Sharma-Resume.pdf"
-          className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-300"
+          href="/yugam-sharma-resume.pdf"
+          download="yugam-sharma-resume.pdf"
+          className="inline-flex items-center gap-2 rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-300"
         >
+          <DownloadIcon size={15} />
           Download PDF
         </a>
       </div>

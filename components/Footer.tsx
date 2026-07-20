@@ -1,4 +1,5 @@
 import { siteConfig } from "@/data/site";
+import { GitHubIcon, LinkedInIcon, MailIcon } from "@/components/icons";
 
 export function Footer() {
   return (
@@ -13,8 +14,9 @@ export function Footer() {
               href={siteConfig.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
+              className="inline-flex items-center gap-1.5 transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
             >
+              <GitHubIcon size={14} />
               GitHub
             </a>
           </li>
@@ -23,16 +25,18 @@ export function Footer() {
               href={siteConfig.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
+              className="inline-flex items-center gap-1.5 transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
             >
+              <LinkedInIcon size={14} />
               LinkedIn
             </a>
           </li>
           <li>
             <a
               href={`mailto:${siteConfig.email}`}
-              className="transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
+              className="inline-flex items-center gap-1.5 transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
             >
+              <MailIcon size={14} />
               Email
             </a>
           </li>

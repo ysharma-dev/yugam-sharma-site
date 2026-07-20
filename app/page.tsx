@@ -3,6 +3,12 @@ import { resume } from "@/data/resume";
 import { siteConfig } from "@/data/site";
 import { getAllPosts, formatDate } from "@/lib/blog";
 import { MessiAnimation } from "@/components/MessiAnimation";
+import {
+  GitHubIcon,
+  LinkedInIcon,
+  FileTextIcon,
+  BookOpenIcon,
+} from "@/components/icons";
 
 export default function HomePage() {
   const posts = getAllPosts().slice(0, 3);
@@ -47,30 +53,34 @@ export default function HomePage() {
       <div className="mt-8 flex flex-wrap items-center gap-4">
         <Link
           href="/resume"
-          className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-300"
+          className="inline-flex items-center gap-2 rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-300"
         >
+          <FileTextIcon size={15} />
           View Resume
         </Link>
         <Link
           href="/blog"
-          className="rounded-md border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
+          className="inline-flex items-center gap-2 rounded-md border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
         >
+          <BookOpenIcon size={15} />
           Read the Blog
         </Link>
         <a
           href={siteConfig.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm text-zinc-600 underline-offset-4 hover:underline dark:text-zinc-400"
+          className="inline-flex items-center gap-1.5 text-sm text-zinc-600 underline-offset-4 hover:underline dark:text-zinc-400"
         >
+          <GitHubIcon size={15} />
           GitHub
         </a>
         <a
           href={siteConfig.linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm text-zinc-600 underline-offset-4 hover:underline dark:text-zinc-400"
+          className="inline-flex items-center gap-1.5 text-sm text-zinc-600 underline-offset-4 hover:underline dark:text-zinc-400"
         >
+          <LinkedInIcon size={15} />
           LinkedIn
         </a>
       </div>
