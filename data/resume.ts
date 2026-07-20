@@ -36,11 +36,9 @@ export interface Resume {
   name: string;
   headline: string;
   location: string;
-  phone: string;
   email: string;
   linkedin: string;
   github: string;
-  summary: string;
   experience: ExperienceEntry[];
   skills: SkillCategory[];
   certifications: Certification[];
@@ -50,33 +48,30 @@ export interface Resume {
 
 export const resume: Resume = {
   name: "Yugam Sharma",
-  headline: "Sr. Cloud Infrastructure / SRE Engineer",
+  headline: "Sr. Software Engineer",
   location: "Sunnyvale, CA",
-  phone: "(650) 447-9739",
   email: "yugam.sharma@yahoo.com",
   linkedin: "https://linkedin.com/in/yugamsharma",
   github: "https://github.com/ysharma-dev",
-  summary:
-    "Senior Cloud Infrastructure / SRE Engineer with 8+ years building scalable, highly available platforms on AWS and Kubernetes. At Proofpoint, architected a company-wide GitOps platform (CDK8s + ArgoCD) for multi-tenant delivery across 50+ EKS clusters hosting ~1,000 microservices, and designed a serverless webhook solution (API Gateway, Lambda, WAF) used by all engineering teams. Deep expertise across AWS (EC2, VPC, IAM, S3, RDS, Lambda, EKS), EC2 fleet management, Kubernetes, Terraform, Ansible, HashiCorp Vault, CI/CD, secrets management, and observability (Prometheus, Grafana, Thanos). Mentors 4 engineers and contributes to technical direction and infrastructure standards.",
   experience: [
     {
-      title: "Sr. Software Engineer — Infrastructure Engineering",
+      title: "Sr. Software Engineer - Platform Engineering",
       company: "Proofpoint",
       start: "Jul 2024",
       end: "Present",
       bullets: [
-        "Architected Cloud15 Paved Path v3: company-wide GitOps platform replacing Helm with CDK8s + ArgoCD via Harness CD — automated, git-driven delivery across 50+ EKS clusters hosting ~1,000 microservices.",
+	"Design / Implemented microservice onboarding process spannis common tech stacks such as Java, Go, Python, etc. for engineering teams using Backstage IDP"
+        "Architected Cloud15 Paved Path v3: company-wide GitOps platform replacing Helm with CDK8s + ArgoCD via Harness CD - automated, git-driven delivery across 50+ EKS clusters hosting ~1,000 microservices.",
         "Designed serverless GitHub webhook integration: API Gateway + Lambda + WAF; IP-restricted, signature-validated, serving all engineering teams at ~$23/month per million requests.",
-        "Led multi-region infrastructure expansion (India, Canada, Middle East, Australia) — designed reusable EKS provisioning patterns including EC2 instance selection, right-sizing, and auto-scaling configuration across all 50+ clusters.",
+        "Led multi-region infrastructure expansion (India, Canada, Middle East, Australia) - designed reusable EKS provisioning patterns including EC2 instance selection, right-sizing, and auto-scaling configuration across all 50+ clusters.",
         "Implemented company-wide secrets management: ExternalSecrets Operator + AWS Secrets Manager as the production standard; architected HashiCorp Vault integration strategy for non-AWS platforms and ran proof-of-concept deployments.",
-        "Core member, Observability Working Group: drove OpenTelemetry-based SLO/SLI frameworks, 5-level maturity standards, and Kubernetes labeling conventions adopted across all Catalyst services.",
+        "Observability Working Group: Contributed to OpenTelemetry-based SLO/SLI frameworks, 5-level maturity standards, and Kubernetes labeling conventions adopted across all services.",
         "Built Prometheus / Grafana / Thanos stack with Alertmanager + PagerDuty; designed SLO dashboards and alerting rules reducing MTTD for on-call incidents.",
         "Mentors engineers on infrastructure best practices, GitOps workflows, and AWS platform patterns; contributes to technical direction and standards for the infrastructure team.",
-        "Authored reusable Terraform modules for AWS provisioning including a custom OPA policy module enforcing resource tagging across all accounts.",
       ],
     },
     {
-      title: "Software Engineer III — Infrastructure Engineering",
+      title: "Software Engineer III - Platform Engineering",
       company: "Proofpoint",
       start: "Oct 2022",
       end: "Jul 2024",
@@ -85,7 +80,6 @@ export const resume: Resume = {
         "Administered 50+ Kubernetes clusters end-to-end: version upgrades, autoscaling, workload deployments, and multi-tenant namespace management.",
         "Managed AWS infrastructure (VPC, IAM, EC2, S3, EKS, RDS) across North America, India, Middle East, and APAC.",
         "Developed and maintained Ansible playbooks to automate configuration management for 50+ on-premises CI VMs, reducing manual provisioning time by ~70% and standardizing environment parity across dev, staging, and production; built CI/CD pipelines via Jenkins/CloudBees CI.",
-        "Extended Crossplane adoption for hybrid AWS/Azure multi-cloud resource management and custom Kubernetes operators.",
       ],
     },
     {
