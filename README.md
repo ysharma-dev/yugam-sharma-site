@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# yugam-sharma-site
 
-## Getting Started
+Personal site and blog for Yugam Sharma — resume/portfolio built with Next.js
+(App Router), TypeScript, Tailwind CSS, and file-system MDX. Deployed on
+Vercel.
 
-First, run the development server:
+## Local development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # production build (also regenerates public/resume.pdf)
+npm run generate:pdf   # regenerate the resume PDF only
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+app/          Routes (App Router): /, /resume, /blog, /blog/[slug],
+              sitemap.ts, robots.ts
+components/   Shared UI (Header, Footer, Section)
+content/      MDX content — blog posts live in content/blog/*.mdx
+data/         Typed data layer — resume.ts (single source of truth for the
+              resume page AND the PDF), site.ts (nav, links, metadata)
+lib/          Utilities — blog.ts (filesystem MDX loading)
+scripts/      generate-resume-pdf.tsx — renders data/resume.ts to
+              public/resume.pdf at build time (prebuild hook)
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Adding a blog post
 
-## Learn More
+Create `content/blog/my-post-slug.mdx` with frontmatter:
 
-To learn more about Next.js, take a look at the following resources:
+```yaml
+---
+title: "Post title"
+date: "2026-08-01"
+summary: "One-line summary shown in listings and used for SEO."
+tags: ["kubernetes", "aws"]
+---
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The listing page, post page, home-page "Latest Posts", and sitemap all pick it
+up automatically — no code changes needed.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Adding a new site section (e.g. /projects)
 
-## Deploy on Vercel
+1. Create `app/projects/page.tsx` (plus a `data/projects.ts` file if it's
+   data-driven).
+2. Add `{ label: "Projects", href: "/projects" }` to `nav` in `data/site.ts` —
+   the header nav and sitemap update automatically.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Layout, header, footer, fonts, and metadata defaults all come from
+`app/layout.tsx`, so new sections inherit them for free.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Updating the resume
+
+Edit `data/resume.ts`. The `/resume` page and the downloadable PDF are both
+rendered from it; the PDF is regenerated on every build.
+
+## Deployment
+
+Pushes to `main` deploy automatically via Vercel's GitHub integration
+(`npm run build` runs the PDF prebuild step on Vercel too).

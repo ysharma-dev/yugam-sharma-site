@@ -1,0 +1,43 @@
+---
+title: "Building This Site: Next.js, MDX, and a Single Source of Truth"
+date: "2026-07-19"
+summary: "Why I built my personal site with Next.js App Router, a typed resume data file, and file-system MDX for the blog — and how the pieces fit together."
+tags: ["nextjs", "meta", "typescript"]
+---
+
+Welcome! This is the first post on my new site, and it doubles as a smoke test
+for the MDX pipeline.
+
+## Why this stack
+
+As an infrastructure engineer, I wanted my personal site to follow the same
+principles I apply to platform work:
+
+- **Single source of truth** — my resume lives in one typed data file
+  (`data/resume.ts`), which renders both the resume page and the downloadable
+  PDF. Change it once, and both stay in sync.
+- **No moving parts** — blog posts are plain `.mdx` files in `content/blog/`.
+  No CMS, no database, nothing to patch or babysit.
+- **Boring, reliable delivery** — static generation on Vercel. Every push to
+  `main` deploys automatically.
+
+## How a post works
+
+Each post is an MDX file with frontmatter:
+
+```yaml
+---
+title: "Post title"
+date: "2026-07-19"
+summary: "One-line summary for listings and SEO."
+tags: ["kubernetes", "aws"]
+---
+```
+
+Code blocks work too, which matters for the kind of writing I plan to do here:
+
+```bash
+kubectl get nodes -o wide
+```
+
+More posts on Kubernetes, GitOps, and observability coming soon.
