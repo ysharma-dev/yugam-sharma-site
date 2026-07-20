@@ -19,6 +19,7 @@ export function MessiAnimation() {
       <div className={styles.keeper}>
         <div className={styles.keeperHead} />
         <div className={styles.keeperBody} />
+        <div className={styles.keeperShorts} />
         <div className={styles.keeperLegs} />
       </div>
       <div className={styles.wall}>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- A terminal prompt: the natural habitat of an infrastructure engineer -->
+  <rect width="64" height="64" rx="14" fill="#18181b"/>
+  <path d="M14 20 L30 32 L14 44" fill="none" stroke="#34d399" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="36" y="40" width="16" height="6" rx="3" fill="#e4e4e7"/>
+</svg>

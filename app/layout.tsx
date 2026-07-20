@@ -25,7 +25,7 @@ const cascadiaCode = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Yug",
+    default: "Yugam",
     template: `%s · ${siteConfig.name}`,
   },
   description: siteConfig.description,
