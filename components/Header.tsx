@@ -9,7 +9,7 @@ export function Header() {
           href="/"
           className="font-mono text-sm font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
         >
-          yugam@sharma:~$
+          $ whoami -&gt; yugam
         </Link>
         <nav aria-label="Main navigation">
           <ul className="flex items-center gap-6">

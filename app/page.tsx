@@ -2,27 +2,38 @@ import Link from "next/link";
 import { resume } from "@/data/resume";
 import { siteConfig } from "@/data/site";
 import { getAllPosts, formatDate } from "@/lib/blog";
+import { MessiAnimation } from "@/components/MessiAnimation";
 
 export default function HomePage() {
   const posts = getAllPosts().slice(0, 3);
 
   return (
     <div className="py-8">
-      <p className="text-sm text-emerald-600 dark:text-emerald-400">
-        Hi, I&apos;m
-      </p>
-      <h1 className="mt-2 text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-        {resume.name}
-      </h1>
-      <p className="mt-2 text-xl text-zinc-600 dark:text-zinc-400">
-        {resume.headline}
-      </p>
-      <p className="mt-6 max-w-2xl leading-relaxed text-zinc-700 dark:text-zinc-300">
-        I build scalable, highly available platforms on AWS and Kubernetes —
-        GitOps delivery across 50+ EKS clusters, serverless integrations,
-        secrets management, and observability. Currently at Proofpoint,
-        previously Sisense and Pivotal/VMware.
-      </p>
+      <div className="flex flex-col items-center gap-10 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <p className="text-sm text-emerald-600 dark:text-emerald-400">
+            Hi, I&apos;m
+          </p>
+          <h1 className="mt-2 text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+            {resume.name}
+          </h1>
+          <p className="mt-2 text-xl text-zinc-600 dark:text-zinc-400">
+            Software Engineer
+          </p>
+          <p className="mt-6 max-w-xl leading-relaxed text-zinc-700 dark:text-zinc-300">
+            I work on cloud infrastructure and reliability — mostly AWS and
+            Kubernetes. I enjoy automating the tedious parts, keeping
+            production boring, and writing down what I learn along the way
+            (often from incidents). Currently at Proofpoint.
+          </p>
+        </div>
+        <div className="flex flex-col items-center gap-2 sm:mt-6">
+          <MessiAnimation />
+          <p className="max-w-[180px] text-center text-xs text-zinc-500 dark:text-zinc-400">
+            Off the clock: football. A little CSS tribute to the #10. ⚽
+          </p>
+        </div>
+      </div>
 
       <div className="mt-8 flex flex-wrap items-center gap-4">
         <Link

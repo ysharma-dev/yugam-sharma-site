@@ -1,0 +1,245 @@
+.scene {
+  position: relative;
+  width: 160px;
+  height: 190px;
+  flex-shrink: 0;
+}
+
+.character {
+  position: absolute;
+  inset: 0;
+  animation: bob 1.4s ease-in-out infinite;
+}
+
+/* -- head -- */
+.head {
+  position: absolute;
+  top: 10px;
+  left: 62px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e8b88a;
+}
+
+.hair {
+  position: absolute;
+  top: 6px;
+  left: 60px;
+  width: 40px;
+  height: 16px;
+  border-radius: 50% 50% 30% 30%;
+  background: #2e2620;
+}
+
+.eye {
+  position: absolute;
+  top: 25px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #221a14;
+}
+
+.eyeLeft {
+  left: 71px;
+}
+
+.eyeRight {
+  left: 85px;
+}
+
+.beard {
+  position: absolute;
+  top: 37px;
+  left: 66px;
+  width: 28px;
+  height: 11px;
+  border-radius: 3px 3px 14px 14px;
+  background: #3a2e26;
+}
+
+/* -- torso: sky-blue & white stripes, the number 10 -- */
+.torso {
+  position: absolute;
+  top: 46px;
+  left: 48px;
+  width: 64px;
+  height: 52px;
+  border-radius: 10px 10px 6px 6px;
+  background: repeating-linear-gradient(
+    90deg,
+    #7fc0ea 0 9px,
+    #ffffff 9px 18px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.number {
+  font-weight: 700;
+  font-size: 15px;
+  color: #16213e;
+  text-shadow:
+    -1px 0 #fff,
+    1px 0 #fff;
+}
+
+.arm {
+  position: absolute;
+  top: 50px;
+  width: 12px;
+  height: 34px;
+  border-radius: 6px;
+  background: linear-gradient(#7fc0ea 0 13px, #e8b88a 13px);
+  transform-origin: 50% 0;
+}
+
+.armLeft {
+  left: 37px;
+  transform: rotate(14deg);
+}
+
+.armRight {
+  left: 111px;
+  transform: rotate(-14deg);
+  animation: armSwing 1.4s ease-in-out infinite;
+}
+
+/* -- shorts & legs -- */
+.shorts {
+  position: absolute;
+  top: 96px;
+  left: 52px;
+  width: 56px;
+  height: 20px;
+  border-radius: 3px 3px 7px 7px;
+  background: #16213e;
+}
+
+.leg {
+  position: absolute;
+  top: 114px;
+  width: 13px;
+  height: 50px;
+  border-radius: 0 0 5px 5px;
+  /* skin, then sock in light gray so it reads against a white background */
+  background: linear-gradient(#e8b88a 0 18px, #dfe3e8 18px 42px, #111 42px);
+}
+
+.legLeft {
+  left: 60px;
+}
+
+.legRight {
+  left: 88px;
+  transform-origin: 50% 0;
+  animation: kick 1.4s ease-in-out infinite;
+}
+
+.boot {
+  position: absolute;
+  bottom: -5px;
+  left: -3px;
+  width: 22px;
+  height: 8px;
+  border-radius: 4px 8px 2px 2px;
+  background: #111;
+}
+
+/* -- ball -- */
+.ball {
+  position: absolute;
+  bottom: 14px;
+  left: 98px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, #16213e 0 3.5px, transparent 4px),
+    radial-gradient(circle at 22% 38%, #16213e 0 2.5px, transparent 3px),
+    radial-gradient(circle at 78% 38%, #16213e 0 2.5px, transparent 3px),
+    radial-gradient(circle at 34% 80%, #16213e 0 2.5px, transparent 3px),
+    radial-gradient(circle at 66% 80%, #16213e 0 2.5px, transparent 3px),
+    radial-gradient(circle at 50% 12%, #16213e 0 2.5px, transparent 3px),
+    radial-gradient(circle at 38% 32%, #ffffff 55%, #d4d4d4);
+  box-shadow: inset -2px -2px 3px rgba(0, 0, 0, 0.15);
+  animation: juggle 1.4s ease-in-out infinite;
+}
+
+.shadow {
+  position: absolute;
+  bottom: 4px;
+  left: 45px;
+  width: 80px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.15);
+  animation: shadowPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes kick {
+  0%,
+  100% {
+    transform: rotate(-42deg);
+  }
+  20% {
+    transform: rotate(8deg);
+  }
+  80% {
+    transform: rotate(8deg);
+  }
+}
+
+@keyframes juggle {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-85px) rotate(180deg);
+  }
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(-3px);
+  }
+  20%,
+  80% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes armSwing {
+  0%,
+  100% {
+    transform: rotate(-32deg);
+  }
+  20%,
+  80% {
+    transform: rotate(-14deg);
+  }
+}
+
+@keyframes shadowPulse {
+  0%,
+  100% {
+    transform: scaleX(1.08);
+  }
+  50% {
+    transform: scaleX(0.92);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .character,
+  .legRight,
+  .armRight,
+  .ball,
+  .shadow {
+    animation: none;
+  }
+}
