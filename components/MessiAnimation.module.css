@@ -1,387 +1,417 @@
+/*
+ * Behind-the-shooter free-kick scene (the 2019 Camp Nou angle):
+ * crowd, front-facing goal + keeper, defensive wall, back-view #10,
+ * ball curled over the wall into the top-right corner. One 4.2s loop.
+ */
 .scene {
   position: relative;
   width: 280px;
-  height: 190px;
+  height: 200px;
   flex-shrink: 0;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.ground {
-  position: absolute;
-  bottom: 9px;
-  left: 4px;
-  right: 4px;
-  height: 2px;
-  border-radius: 1px;
-  background: rgba(113, 113, 122, 0.3);
-}
-
-/* ---------- player ---------- */
-.player {
+/* ---------- backdrop ---------- */
+.crowd {
   position: absolute;
   top: 0;
   left: 0;
-  width: 160px;
-  height: 190px;
+  right: 0;
+  height: 28px;
+  background: repeating-linear-gradient(
+    90deg,
+    #52525b 0 5px,
+    #3f3f46 5px 9px,
+    #71717a 9px 12px,
+    #3f3f46 12px 17px
+  );
+}
+
+.board {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: #d4d4d8;
+}
+
+.pitch {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    #57a05f 0 22px,
+    #4d9455 22px 44px
+  );
+}
+
+/* ---------- goal (facing the viewer) ---------- */
+.goal {
+  position: absolute;
+  top: 40px;
+  left: 65px;
+  width: 150px;
+  height: 56px;
+}
+
+.net {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(250, 250, 250, 0.5) 0 1px,
+      transparent 1px 6px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(250, 250, 250, 0.5) 0 1px,
+      transparent 1px 6px
+    ),
+    rgba(20, 30, 25, 0.28);
+  transform-origin: 50% 20%;
+  animation: netRipple 4.2s ease-in-out infinite;
+}
+
+.crossbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 2px;
+  background: #f4f4f5;
+}
+
+.postLeft,
+.postRight {
+  position: absolute;
+  top: 0;
+  width: 3px;
+  height: 56px;
+  border-radius: 2px;
+  background: #f4f4f5;
+}
+
+.postLeft {
+  left: 0;
+}
+
+.postRight {
+  right: 0;
+}
+
+/* ---------- keeper (beaten, dives late to his left) ---------- */
+.keeper {
+  position: absolute;
+  top: 66px;
+  left: 133px;
+  width: 14px;
+  height: 30px;
   transform-origin: 50% 100%;
-  animation: lean 3.4s ease-in-out infinite;
+  animation: keeperDive 4.2s ease-in-out infinite;
 }
 
-.hair {
+.keeperHead {
   position: absolute;
-  top: 4px;
-  left: 57px;
-  width: 46px;
-  height: 34px;
-  border-radius: 50% 50% 45% 45%;
-  background: #2e2620;
-}
-
-.head {
-  position: absolute;
-  top: 10px;
-  left: 63px;
-  width: 34px;
-  height: 34px;
+  top: 0;
+  left: 4px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: #e8b88a;
 }
 
-.eyebrow {
+.keeperBody {
   position: absolute;
-  top: 21px;
+  top: 5px;
+  left: 1px;
+  width: 12px;
+  height: 13px;
+  border-radius: 3px;
+  background: #ec4899;
+}
+
+.keeperLegs {
+  position: absolute;
+  top: 18px;
+  left: 3px;
   width: 8px;
-  height: 3px;
-  border-radius: 2px;
+  height: 12px;
+  background: linear-gradient(
+    90deg,
+    #27272a 0 3px,
+    transparent 3px 5px,
+    #27272a 5px 8px
+  );
+}
+
+/* ---------- defensive wall (jumps as the ball goes over) ---------- */
+.wall {
+  position: absolute;
+  top: 98px;
+  left: 88px;
+  width: 76px;
+  height: 40px;
+  animation: wallJump 4.2s ease-in-out infinite;
+}
+
+.defender {
+  position: absolute;
+  top: 0;
+  width: 14px;
+  height: 37px;
+}
+
+.defender:nth-child(1) {
+  left: 0;
+}
+
+.defender:nth-child(2) {
+  left: 20px;
+}
+
+.defender:nth-child(3) {
+  left: 40px;
+}
+
+.defender:nth-child(4) {
+  left: 60px;
+}
+
+.defenderHead {
+  position: absolute;
+  top: 0;
+  left: 4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #d7a17d;
+}
+
+.defenderBody {
+  position: absolute;
+  top: 6px;
+  left: 2px;
+  width: 10px;
+  height: 13px;
+  border-radius: 3px 3px 2px 2px;
+  background: #f4f4f5;
+}
+
+.defenderShorts {
+  position: absolute;
+  top: 19px;
+  left: 2px;
+  width: 10px;
+  height: 6px;
+  background: #e4e4e7;
+}
+
+.defenderLegs {
+  position: absolute;
+  top: 25px;
+  left: 2px;
+  width: 10px;
+  height: 12px;
+  background: linear-gradient(
+    90deg,
+    #d7a17d 0 3px,
+    transparent 3px 7px,
+    #d7a17d 7px 10px
+  );
+}
+
+/* ---------- the shooter, from behind: hair, back of the shirt, #10 ---------- */
+.striker {
+  position: absolute;
+  top: 122px;
+  left: 128px;
+  width: 44px;
+  height: 64px;
+  animation: runUp 4.2s ease-in-out infinite;
+}
+
+.strikerShadow {
+  position: absolute;
+  top: 59px;
+  left: 4px;
+  width: 36px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.strikerHair {
+  position: absolute;
+  top: 0;
+  left: 14px;
+  width: 16px;
+  height: 15px;
+  border-radius: 50% 50% 42% 42%;
   background: #2e2620;
 }
 
-.eyebrowLeft {
-  left: 69px;
-}
-
-.eyebrowRight {
-  left: 84px;
-}
-
-.eye {
+.strikerTorso {
   position: absolute;
-  top: 26px;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: #221a14;
-}
-
-.eyeLeft {
-  left: 71px;
-}
-
-.eyeRight {
-  left: 86px;
-}
-
-/* fuller beard with the reddish-brown tinge, wrapping the jaw */
-.beard {
-  position: absolute;
-  top: 33px;
-  left: 64px;
-  width: 32px;
-  height: 15px;
-  border-radius: 3px 3px 16px 16px;
-  background: #503823;
-}
-
-.mouth {
-  position: absolute;
-  top: 36px;
-  left: 76px;
-  width: 8px;
-  height: 2px;
-  border-radius: 1px;
-  background: #8a6046;
-}
-
-.torso {
-  position: absolute;
-  top: 46px;
-  left: 49px;
-  width: 62px;
-  height: 50px;
-  border-radius: 10px 10px 6px 6px;
-  background: repeating-linear-gradient(
-    90deg,
-    #7fc0ea 0 9px,
-    #ffffff 9px 18px
-  );
+  top: 13px;
+  left: 9px;
+  width: 26px;
+  height: 24px;
+  border-radius: 6px 6px 4px 4px;
+  background: repeating-linear-gradient(90deg, #7fc0ea 0 5px, #ffffff 5px 10px);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.number {
+.strikerNumber {
   font-weight: 700;
-  font-size: 15px;
+  font-size: 12px;
   color: #16213e;
   text-shadow:
     -1px 0 #fff,
     1px 0 #fff;
 }
 
-.arm {
+.strikerArm {
   position: absolute;
-  top: 50px;
-  width: 12px;
-  height: 32px;
-  border-radius: 6px;
-  background: linear-gradient(#7fc0ea 0 13px, #e8b88a 13px);
-  transform-origin: 50% 0;
+  top: 15px;
+  width: 5px;
+  height: 18px;
+  border-radius: 3px;
+  background: linear-gradient(#7fc0ea 0 7px, #e8b88a 7px);
 }
 
-.armLeft {
-  left: 38px;
-  animation: swingLeftArm 3.4s ease-in-out infinite;
+.strikerArmLeft {
+  left: 4px;
 }
 
-.armRight {
-  left: 110px;
-  animation: swingRightArm 3.4s ease-in-out infinite;
+.strikerArmRight {
+  left: 35px;
 }
 
-.shorts {
+.strikerShorts {
   position: absolute;
-  top: 94px;
-  left: 53px;
-  width: 54px;
-  height: 20px;
-  border-radius: 3px 3px 7px 7px;
+  top: 36px;
+  left: 11px;
+  width: 22px;
+  height: 10px;
+  border-radius: 2px 2px 4px 4px;
   background: #16213e;
 }
 
-.leg {
+.strikerLeg {
   position: absolute;
-  top: 112px;
-  width: 13px;
-  height: 48px;
-  border-radius: 0 0 5px 5px;
-  /* skin, then sock in light gray so it reads against a white background */
-  background: linear-gradient(#e8b88a 0 16px, #dfe3e8 16px 40px, #111 40px);
+  top: 45px;
+  width: 6px;
+  height: 16px;
+  border-radius: 0 0 2px 2px;
+  background: linear-gradient(#e8b88a 0 5px, #dfe3e8 5px 13px, #111 13px);
 }
 
-.legStand {
-  left: 60px;
-}
-
-/* his LEFT foot (viewer's right) — the one that strikes the ball */
-.legKick {
-  left: 87px;
+/* his left foot — from behind, the viewer's left */
+.strikerLegKick {
+  left: 13px;
   transform-origin: 50% 0;
-  animation: kick 3.4s ease-in-out infinite;
+  animation: strikerKick 4.2s ease-in-out infinite;
 }
 
-.boot {
-  position: absolute;
-  bottom: -5px;
-  left: -3px;
-  width: 21px;
-  height: 8px;
-  border-radius: 4px 8px 2px 2px;
-  background: #111;
-}
-
-.playerShadow {
-  position: absolute;
-  bottom: 5px;
-  left: 48px;
-  width: 76px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.15);
-}
-
-/* ---------- goal (side view, mouth facing the shooter) ---------- */
-.goal {
-  position: absolute;
-  right: 4px;
-  bottom: 9px;
-  width: 96px;
-  height: 112px;
-}
-
-.net {
-  position: absolute;
-  top: 8px;
-  left: 3px;
-  width: 90px;
-  height: 104px;
-  clip-path: polygon(0 0, 100% 16%, 100% 100%, 0 100%);
-  background:
-    repeating-linear-gradient(
-      0deg,
-      rgba(148, 163, 184, 0.55) 0 1px,
-      transparent 1px 7px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(148, 163, 184, 0.55) 0 1px,
-      transparent 1px 7px
-    );
-}
-
-.postFront {
-  position: absolute;
-  top: 6px;
-  left: 0;
-  width: 4px;
-  height: 106px;
-  border-radius: 2px;
-  background: #a6adb8;
-}
-
-.topBar {
-  position: absolute;
-  top: 6px;
-  left: 0;
-  width: 97px;
-  height: 4px;
-  border-radius: 2px;
-  background: #a6adb8;
-  transform-origin: 0 50%;
-  transform: rotate(9deg);
-}
-
-.postBack {
-  position: absolute;
-  top: 24px;
-  right: 0;
-  width: 4px;
-  height: 88px;
-  border-radius: 2px;
-  background: #a6adb8;
+.strikerLegStand {
+  left: 25px;
 }
 
 /* ---------- ball ---------- */
 .ball {
   position: absolute;
-  top: 152px;
-  left: 96px;
-  width: 20px;
-  height: 20px;
+  top: 176px;
+  left: 124px;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 50% 50%, #16213e 0 2.5px, transparent 3px),
-    radial-gradient(circle at 22% 38%, #16213e 0 2px, transparent 2.5px),
-    radial-gradient(circle at 78% 38%, #16213e 0 2px, transparent 2.5px),
-    radial-gradient(circle at 34% 80%, #16213e 0 2px, transparent 2.5px),
-    radial-gradient(circle at 66% 80%, #16213e 0 2px, transparent 2.5px),
-    radial-gradient(circle at 50% 12%, #16213e 0 2px, transparent 2.5px),
+    radial-gradient(circle at 50% 50%, #16213e 0 1.8px, transparent 2.2px),
+    radial-gradient(circle at 24% 36%, #16213e 0 1.3px, transparent 1.7px),
+    radial-gradient(circle at 76% 36%, #16213e 0 1.3px, transparent 1.7px),
+    radial-gradient(circle at 36% 80%, #16213e 0 1.3px, transparent 1.7px),
+    radial-gradient(circle at 64% 80%, #16213e 0 1.3px, transparent 1.7px),
     radial-gradient(circle at 38% 32%, #ffffff 55%, #d4d4d4);
-  box-shadow: inset -2px -2px 3px rgba(0, 0, 0, 0.15);
-  animation: freeKick 3.4s ease-in-out infinite;
+  box-shadow: inset -1px -1px 2px rgba(0, 0, 0, 0.15);
+  animation: freeKick 4.2s ease-in-out infinite;
 }
 
-/* ---------- choreography: windup → strike → curl into the top corner ---------- */
-@keyframes kick {
+/* ---------- choreography ---------- */
+@keyframes runUp {
+  0% {
+    transform: translate(26px, 0);
+  }
+  8% {
+    transform: translate(18px, -3px);
+  }
+  16% {
+    transform: translate(9px, 0);
+  }
+  24%,
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes strikerKick {
   0%,
-  38% {
-    transform: rotate(4deg);
+  40% {
+    transform: rotate(0deg);
   }
-  44% {
-    transform: rotate(38deg); /* windup — foot swings back */
+  46% {
+    transform: rotate(-35deg); /* windup — foot swings back */
   }
-  49% {
-    transform: rotate(-60deg); /* strike — foot drives through toward goal */
+  50% {
+    transform: rotate(48deg); /* strike through the ball */
   }
   58% {
-    transform: rotate(-20deg);
+    transform: rotate(14deg);
   }
   66%,
   100% {
-    transform: rotate(4deg);
-  }
-}
-
-@keyframes lean {
-  0%,
-  38% {
     transform: rotate(0deg);
-  }
-  44% {
-    transform: rotate(-5deg); /* leaning back over the ball */
-  }
-  50% {
-    transform: rotate(5deg);
-  }
-  60%,
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
-@keyframes swingLeftArm {
-  0%,
-  38% {
-    transform: rotate(14deg);
-  }
-  44% {
-    transform: rotate(-15deg);
-  }
-  49% {
-    transform: rotate(42deg);
-  }
-  60%,
-  100% {
-    transform: rotate(14deg);
-  }
-}
-
-@keyframes swingRightArm {
-  0%,
-  38% {
-    transform: rotate(-14deg);
-  }
-  44% {
-    transform: rotate(-48deg);
-  }
-  49% {
-    transform: rotate(12deg);
-  }
-  60%,
-  100% {
-    transform: rotate(-14deg);
   }
 }
 
 @keyframes freeKick {
   0%,
-  49% {
+  50% {
     transform: translate(0, 0) rotate(0deg);
     opacity: 1;
   }
-  53% {
-    transform: translate(18px, -40px) rotate(140deg);
+  55% {
+    transform: translate(20px, -50px) rotate(160deg);
   }
-  58% {
-    transform: translate(48px, -78px) rotate(300deg);
+  61% {
+    transform: translate(40px, -95px) rotate(340deg);
   }
-  64% {
-    transform: translate(78px, -76px) rotate(460deg);
+  67% {
+    transform: translate(64px, -120px) rotate(500deg);
   }
-  69% {
-    transform: translate(90px, -68px) rotate(560deg); /* bends into the corner */
+  71% {
+    transform: translate(74px, -126px) rotate(560deg); /* top-right corner */
   }
-  72% {
-    transform: translate(92px, -60px) rotate(580deg);
+  74% {
+    transform: translate(72px, -118px) rotate(575deg); /* settles in the net */
     opacity: 1;
   }
-  80% {
-    transform: translate(92px, -56px) rotate(580deg);
+  84% {
+    transform: translate(72px, -118px) rotate(575deg);
     opacity: 1;
   }
-  83% {
-    transform: translate(92px, -56px) rotate(580deg);
-    opacity: 0;
-  }
-  84%,
+  87%,
   96% {
     transform: translate(0, 0) rotate(0deg);
     opacity: 0;
@@ -392,11 +422,60 @@
   }
 }
 
+@keyframes wallJump {
+  0%,
+  50% {
+    transform: translateY(0);
+  }
+  56% {
+    transform: translateY(-10px);
+  }
+  62%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes keeperDive {
+  0%,
+  56% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  60% {
+    transform: translate(4px, -2px) rotate(12deg);
+  }
+  68% {
+    transform: translate(18px, 4px) rotate(70deg); /* full stretch, beaten */
+  }
+  84% {
+    transform: translate(18px, 4px) rotate(70deg);
+  }
+  94%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+@keyframes netRipple {
+  0%,
+  70% {
+    transform: scale(1);
+  }
+  74% {
+    transform: scale(1.04) translateY(1px);
+  }
+  80%,
+  100% {
+    transform: scale(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .player,
-  .legKick,
-  .armLeft,
-  .armRight,
+  .net,
+  .keeper,
+  .wall,
+  .striker,
+  .strikerLegKick,
   .ball {
     animation: none;
   }

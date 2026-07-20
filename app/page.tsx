@@ -30,7 +30,16 @@ export default function HomePage() {
         <div className="flex flex-col items-center gap-2 sm:mt-6">
           <MessiAnimation />
           <p className="max-w-[260px] text-center text-xs text-zinc-500 dark:text-zinc-400">
-            A little CSS tribute to the #10. ⚽
+            A little CSS tribute to{" "}
+            <a
+              href="https://messi.com/en/biography/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4 hover:text-zinc-700 dark:hover:text-zinc-200"
+            >
+              the #10
+            </a>
+            . ⚽
           </p>
         </div>
       </div>

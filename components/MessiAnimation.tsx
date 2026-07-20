@@ -5,39 +5,45 @@ export function MessiAnimation() {
     <div
       className={styles.scene}
       role="img"
-      aria-label="A small animated cartoon of Lionel Messi in an Argentina number 10 shirt curling a left-footed free kick into the top corner of a goal"
+      aria-label="An animated cartoon recreation of Lionel Messi's famous free kick, seen from behind the number 10: the ball curls over the jumping defensive wall, past the diving goalkeeper, into the top corner of the goal"
     >
-      <div className={styles.ground} />
-      <div className={styles.playerShadow} />
-      <div className={styles.player}>
-        <div className={styles.hair} />
-        <div className={styles.head} />
-        <div className={`${styles.eyebrow} ${styles.eyebrowLeft}`} />
-        <div className={`${styles.eyebrow} ${styles.eyebrowRight}`} />
-        <div className={`${styles.eye} ${styles.eyeLeft}`} />
-        <div className={`${styles.eye} ${styles.eyeRight}`} />
-        <div className={styles.beard} />
-        <div className={styles.mouth} />
-        <div className={`${styles.arm} ${styles.armLeft}`} />
-        <div className={`${styles.arm} ${styles.armRight}`} />
-        <div className={styles.torso}>
-          <span className={styles.number} aria-hidden="true">
+      <div className={styles.crowd} />
+      <div className={styles.board} />
+      <div className={styles.pitch} />
+      <div className={styles.goal}>
+        <div className={styles.net} />
+        <div className={styles.crossbar} />
+        <div className={styles.postLeft} />
+        <div className={styles.postRight} />
+      </div>
+      <div className={styles.keeper}>
+        <div className={styles.keeperHead} />
+        <div className={styles.keeperBody} />
+        <div className={styles.keeperLegs} />
+      </div>
+      <div className={styles.wall}>
+        {[0, 1, 2, 3].map((i) => (
+          <div key={i} className={styles.defender}>
+            <div className={styles.defenderHead} />
+            <div className={styles.defenderBody} />
+            <div className={styles.defenderShorts} />
+            <div className={styles.defenderLegs} />
+          </div>
+        ))}
+      </div>
+      <div className={styles.striker}>
+        <div className={styles.strikerShadow} />
+        <div className={styles.strikerHair} />
+        <div className={`${styles.strikerArm} ${styles.strikerArmLeft}`} />
+        <div className={`${styles.strikerArm} ${styles.strikerArmRight}`} />
+        <div className={styles.strikerTorso}>
+          <span className={styles.strikerNumber} aria-hidden="true">
             10
           </span>
         </div>
-        <div className={styles.shorts} />
-        <div className={`${styles.leg} ${styles.legStand}`}>
-          <div className={styles.boot} />
-        </div>
-        <div className={`${styles.leg} ${styles.legKick}`}>
-          <div className={styles.boot} />
-        </div>
-      </div>
-      <div className={styles.goal}>
-        <div className={styles.net} />
-        <div className={styles.topBar} />
-        <div className={styles.postFront} />
-        <div className={styles.postBack} />
+        <div className={styles.strikerShorts} />
+        <div className={`${styles.strikerLeg} ${styles.strikerLegKick}`} />
+        <div className={`${styles.strikerLeg} ${styles.strikerLegStand}`} />
       </div>
       <div className={styles.ball} />
     </div>
