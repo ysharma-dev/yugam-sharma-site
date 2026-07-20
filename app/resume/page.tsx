@@ -37,12 +37,6 @@ export default function ResumePage() {
         </a>
       </div>
 
-      <Section title="Summary">
-        <p className="leading-relaxed text-zinc-700 dark:text-zinc-300">
-          {resume.summary}
-        </p>
-      </Section>
-
       <Section title="Experience">
         <div className="space-y-8">
           {resume.experience.map((job) => (

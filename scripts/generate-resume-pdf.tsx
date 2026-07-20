@@ -98,14 +98,10 @@ function ResumePdf() {
       <Page size="LETTER" style={styles.page}>
         <Text style={styles.name}>{resume.name.toUpperCase()}</Text>
         <Text style={styles.contactLine}>
-          {resume.location} | {resume.phone} | {resume.email} |{" "}
+          {resume.location} | {resume.email} |{" "}
           <Link src={resume.linkedin}>{linkedinLabel}</Link> |{" "}
           <Link src={resume.github}>{githubLabel}</Link>
         </Text>
-
-        <Section title="Summary">
-          <Text>{resume.summary}</Text>
-        </Section>
 
         <Section title="Experience">
           {resume.experience.map((job) => (

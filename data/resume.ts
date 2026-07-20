@@ -60,7 +60,7 @@ export const resume: Resume = {
       start: "Jul 2024",
       end: "Present",
       bullets: [
-	"Design / Implemented microservice onboarding process spannis common tech stacks such as Java, Go, Python, etc. for engineering teams using Backstage IDP"
+        "Designed / implemented microservice onboarding process spanning common tech stacks such as Java, Go, Python, etc. for engineering teams using Backstage IDP",
         "Architected Cloud15 Paved Path v3: company-wide GitOps platform replacing Helm with CDK8s + ArgoCD via Harness CD - automated, git-driven delivery across 50+ EKS clusters hosting ~1,000 microservices.",
         "Designed serverless GitHub webhook integration: API Gateway + Lambda + WAF; IP-restricted, signature-validated, serving all engineering teams at ~$23/month per million requests.",
         "Led multi-region infrastructure expansion (India, Canada, Middle East, Australia) - designed reusable EKS provisioning patterns including EC2 instance selection, right-sizing, and auto-scaling configuration across all 50+ clusters.",
