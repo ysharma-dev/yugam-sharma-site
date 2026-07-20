@@ -23,14 +23,14 @@ export default function HomePage() {
           <p className="mt-6 max-w-xl leading-relaxed text-zinc-700 dark:text-zinc-300">
             I work on cloud infrastructure and reliability — mostly AWS and
             Kubernetes. I enjoy automating the tedious parts, keeping
-            production boring, and writing down what I learn along the way
-            (often from incidents). Currently at Proofpoint.
+            production boring, and writing down what I learn along the way.
+            Currently at Proofpoint.
           </p>
         </div>
         <div className="flex flex-col items-center gap-2 sm:mt-6">
           <MessiAnimation />
-          <p className="max-w-[180px] text-center text-xs text-zinc-500 dark:text-zinc-400">
-            Off the clock: football. A little CSS tribute to the #10. ⚽
+          <p className="max-w-[260px] text-center text-xs text-zinc-500 dark:text-zinc-400">
+            A little CSS tribute to the #10. ⚽
           </p>
         </div>
       </div>

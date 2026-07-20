@@ -1,40 +1,71 @@
 .scene {
   position: relative;
-  width: 160px;
+  width: 280px;
   height: 190px;
   flex-shrink: 0;
 }
 
-.character {
+.ground {
   position: absolute;
-  inset: 0;
-  animation: bob 1.4s ease-in-out infinite;
+  bottom: 9px;
+  left: 4px;
+  right: 4px;
+  height: 2px;
+  border-radius: 1px;
+  background: rgba(113, 113, 122, 0.3);
 }
 
-/* -- head -- */
-.head {
+/* ---------- player ---------- */
+.player {
   position: absolute;
-  top: 10px;
-  left: 62px;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: #e8b88a;
+  top: 0;
+  left: 0;
+  width: 160px;
+  height: 190px;
+  transform-origin: 50% 100%;
+  animation: lean 3.4s ease-in-out infinite;
 }
 
 .hair {
   position: absolute;
-  top: 6px;
-  left: 60px;
-  width: 40px;
-  height: 16px;
-  border-radius: 50% 50% 30% 30%;
+  top: 4px;
+  left: 57px;
+  width: 46px;
+  height: 34px;
+  border-radius: 50% 50% 45% 45%;
   background: #2e2620;
+}
+
+.head {
+  position: absolute;
+  top: 10px;
+  left: 63px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #e8b88a;
+}
+
+.eyebrow {
+  position: absolute;
+  top: 21px;
+  width: 8px;
+  height: 3px;
+  border-radius: 2px;
+  background: #2e2620;
+}
+
+.eyebrowLeft {
+  left: 69px;
+}
+
+.eyebrowRight {
+  left: 84px;
 }
 
 .eye {
   position: absolute;
-  top: 25px;
+  top: 26px;
   width: 4px;
   height: 4px;
   border-radius: 50%;
@@ -46,26 +77,36 @@
 }
 
 .eyeRight {
-  left: 85px;
+  left: 86px;
 }
 
+/* fuller beard with the reddish-brown tinge, wrapping the jaw */
 .beard {
   position: absolute;
-  top: 37px;
-  left: 66px;
-  width: 28px;
-  height: 11px;
-  border-radius: 3px 3px 14px 14px;
-  background: #3a2e26;
+  top: 33px;
+  left: 64px;
+  width: 32px;
+  height: 15px;
+  border-radius: 3px 3px 16px 16px;
+  background: #503823;
 }
 
-/* -- torso: sky-blue & white stripes, the number 10 -- */
+.mouth {
+  position: absolute;
+  top: 36px;
+  left: 76px;
+  width: 8px;
+  height: 2px;
+  border-radius: 1px;
+  background: #8a6046;
+}
+
 .torso {
   position: absolute;
   top: 46px;
-  left: 48px;
-  width: 64px;
-  height: 52px;
+  left: 49px;
+  width: 62px;
+  height: 50px;
   border-radius: 10px 10px 6px 6px;
   background: repeating-linear-gradient(
     90deg,
@@ -90,29 +131,27 @@
   position: absolute;
   top: 50px;
   width: 12px;
-  height: 34px;
+  height: 32px;
   border-radius: 6px;
   background: linear-gradient(#7fc0ea 0 13px, #e8b88a 13px);
   transform-origin: 50% 0;
 }
 
 .armLeft {
-  left: 37px;
-  transform: rotate(14deg);
+  left: 38px;
+  animation: swingLeftArm 3.4s ease-in-out infinite;
 }
 
 .armRight {
-  left: 111px;
-  transform: rotate(-14deg);
-  animation: armSwing 1.4s ease-in-out infinite;
+  left: 110px;
+  animation: swingRightArm 3.4s ease-in-out infinite;
 }
 
-/* -- shorts & legs -- */
 .shorts {
   position: absolute;
-  top: 96px;
-  left: 52px;
-  width: 56px;
+  top: 94px;
+  left: 53px;
+  width: 54px;
   height: 20px;
   border-radius: 3px 3px 7px 7px;
   background: #16213e;
@@ -120,126 +159,245 @@
 
 .leg {
   position: absolute;
-  top: 114px;
+  top: 112px;
   width: 13px;
-  height: 50px;
+  height: 48px;
   border-radius: 0 0 5px 5px;
   /* skin, then sock in light gray so it reads against a white background */
-  background: linear-gradient(#e8b88a 0 18px, #dfe3e8 18px 42px, #111 42px);
+  background: linear-gradient(#e8b88a 0 16px, #dfe3e8 16px 40px, #111 40px);
 }
 
-.legLeft {
+.legStand {
   left: 60px;
 }
 
-.legRight {
-  left: 88px;
+/* his LEFT foot (viewer's right) — the one that strikes the ball */
+.legKick {
+  left: 87px;
   transform-origin: 50% 0;
-  animation: kick 1.4s ease-in-out infinite;
+  animation: kick 3.4s ease-in-out infinite;
 }
 
 .boot {
   position: absolute;
   bottom: -5px;
   left: -3px;
-  width: 22px;
+  width: 21px;
   height: 8px;
   border-radius: 4px 8px 2px 2px;
   background: #111;
 }
 
-/* -- ball -- */
-.ball {
+.playerShadow {
   position: absolute;
-  bottom: 14px;
-  left: 98px;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 50% 50%, #16213e 0 3.5px, transparent 4px),
-    radial-gradient(circle at 22% 38%, #16213e 0 2.5px, transparent 3px),
-    radial-gradient(circle at 78% 38%, #16213e 0 2.5px, transparent 3px),
-    radial-gradient(circle at 34% 80%, #16213e 0 2.5px, transparent 3px),
-    radial-gradient(circle at 66% 80%, #16213e 0 2.5px, transparent 3px),
-    radial-gradient(circle at 50% 12%, #16213e 0 2.5px, transparent 3px),
-    radial-gradient(circle at 38% 32%, #ffffff 55%, #d4d4d4);
-  box-shadow: inset -2px -2px 3px rgba(0, 0, 0, 0.15);
-  animation: juggle 1.4s ease-in-out infinite;
-}
-
-.shadow {
-  position: absolute;
-  bottom: 4px;
-  left: 45px;
-  width: 80px;
-  height: 10px;
+  bottom: 5px;
+  left: 48px;
+  width: 76px;
+  height: 8px;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.15);
-  animation: shadowPulse 1.4s ease-in-out infinite;
 }
 
+/* ---------- goal (side view, mouth facing the shooter) ---------- */
+.goal {
+  position: absolute;
+  right: 4px;
+  bottom: 9px;
+  width: 96px;
+  height: 112px;
+}
+
+.net {
+  position: absolute;
+  top: 8px;
+  left: 3px;
+  width: 90px;
+  height: 104px;
+  clip-path: polygon(0 0, 100% 16%, 100% 100%, 0 100%);
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(148, 163, 184, 0.55) 0 1px,
+      transparent 1px 7px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(148, 163, 184, 0.55) 0 1px,
+      transparent 1px 7px
+    );
+}
+
+.postFront {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 4px;
+  height: 106px;
+  border-radius: 2px;
+  background: #a6adb8;
+}
+
+.topBar {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 97px;
+  height: 4px;
+  border-radius: 2px;
+  background: #a6adb8;
+  transform-origin: 0 50%;
+  transform: rotate(9deg);
+}
+
+.postBack {
+  position: absolute;
+  top: 24px;
+  right: 0;
+  width: 4px;
+  height: 88px;
+  border-radius: 2px;
+  background: #a6adb8;
+}
+
+/* ---------- ball ---------- */
+.ball {
+  position: absolute;
+  top: 152px;
+  left: 96px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, #16213e 0 2.5px, transparent 3px),
+    radial-gradient(circle at 22% 38%, #16213e 0 2px, transparent 2.5px),
+    radial-gradient(circle at 78% 38%, #16213e 0 2px, transparent 2.5px),
+    radial-gradient(circle at 34% 80%, #16213e 0 2px, transparent 2.5px),
+    radial-gradient(circle at 66% 80%, #16213e 0 2px, transparent 2.5px),
+    radial-gradient(circle at 50% 12%, #16213e 0 2px, transparent 2.5px),
+    radial-gradient(circle at 38% 32%, #ffffff 55%, #d4d4d4);
+  box-shadow: inset -2px -2px 3px rgba(0, 0, 0, 0.15);
+  animation: freeKick 3.4s ease-in-out infinite;
+}
+
+/* ---------- choreography: windup → strike → curl into the top corner ---------- */
 @keyframes kick {
   0%,
+  38% {
+    transform: rotate(4deg);
+  }
+  44% {
+    transform: rotate(38deg); /* windup — foot swings back */
+  }
+  49% {
+    transform: rotate(-60deg); /* strike — foot drives through toward goal */
+  }
+  58% {
+    transform: rotate(-20deg);
+  }
+  66%,
   100% {
-    transform: rotate(-42deg);
-  }
-  20% {
-    transform: rotate(8deg);
-  }
-  80% {
-    transform: rotate(8deg);
+    transform: rotate(4deg);
   }
 }
 
-@keyframes juggle {
+@keyframes lean {
   0%,
-  100% {
-    transform: translateY(0) rotate(0deg);
+  38% {
+    transform: rotate(0deg);
+  }
+  44% {
+    transform: rotate(-5deg); /* leaning back over the ball */
   }
   50% {
-    transform: translateY(-85px) rotate(180deg);
+    transform: rotate(5deg);
+  }
+  60%,
+  100% {
+    transform: rotate(0deg);
   }
 }
 
-@keyframes bob {
+@keyframes swingLeftArm {
   0%,
-  100% {
-    transform: translateY(-3px);
+  38% {
+    transform: rotate(14deg);
   }
-  20%,
-  80% {
-    transform: translateY(0);
+  44% {
+    transform: rotate(-15deg);
+  }
+  49% {
+    transform: rotate(42deg);
+  }
+  60%,
+  100% {
+    transform: rotate(14deg);
   }
 }
 
-@keyframes armSwing {
+@keyframes swingRightArm {
   0%,
-  100% {
-    transform: rotate(-32deg);
+  38% {
+    transform: rotate(-14deg);
   }
-  20%,
-  80% {
+  44% {
+    transform: rotate(-48deg);
+  }
+  49% {
+    transform: rotate(12deg);
+  }
+  60%,
+  100% {
     transform: rotate(-14deg);
   }
 }
 
-@keyframes shadowPulse {
+@keyframes freeKick {
   0%,
-  100% {
-    transform: scaleX(1.08);
+  49% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
   }
-  50% {
-    transform: scaleX(0.92);
+  53% {
+    transform: translate(18px, -40px) rotate(140deg);
+  }
+  58% {
+    transform: translate(48px, -78px) rotate(300deg);
+  }
+  64% {
+    transform: translate(78px, -76px) rotate(460deg);
+  }
+  69% {
+    transform: translate(90px, -68px) rotate(560deg); /* bends into the corner */
+  }
+  72% {
+    transform: translate(92px, -60px) rotate(580deg);
+    opacity: 1;
+  }
+  80% {
+    transform: translate(92px, -56px) rotate(580deg);
+    opacity: 1;
+  }
+  83% {
+    transform: translate(92px, -56px) rotate(580deg);
+    opacity: 0;
+  }
+  84%,
+  96% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .character,
-  .legRight,
+  .player,
+  .legKick,
+  .armLeft,
   .armRight,
-  .ball,
-  .shadow {
+  .ball {
     animation: none;
   }
 }
