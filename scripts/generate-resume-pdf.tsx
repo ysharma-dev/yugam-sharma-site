@@ -3,6 +3,7 @@
  * Runs automatically before `next build` (see the "prebuild" npm script);
  * run manually with: npm run generate:pdf
  */
+import fs from "fs";
 import path from "path";
 import { renderToFile, Document, Page, Text, View, Link, StyleSheet } from "@react-pdf/renderer";
 import { resume } from "../data/resume";
@@ -172,6 +173,9 @@ function ResumePdf() {
 
 async function main() {
   const outPath = path.join(process.cwd(), "public", "resume.pdf");
+  // public/ may not exist in a fresh clone: resume.pdf is gitignored and git
+  // does not track empty directories.
+  fs.mkdirSync(path.dirname(outPath), { recursive: true });
   await renderToFile(<ResumePdf />, outPath);
   console.log(`Resume PDF written to ${outPath}`);
 }
