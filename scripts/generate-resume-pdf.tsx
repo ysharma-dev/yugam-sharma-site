@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   page: {
     fontFamily: "Helvetica",
     fontSize: 9,
-    lineHeight: 1.4,
+    lineHeight: 1.35,
     color: "#1a1a1a",
     paddingVertical: 36,
     paddingHorizontal: 44,
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 11,
     fontFamily: "Helvetica-Bold",
-    marginTop: 14,
+    marginTop: 11,
     marginBottom: 5,
     paddingBottom: 2,
     borderBottomWidth: 1,
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   jobHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 8,
+    marginTop: 7,
   },
   jobTitle: {
     fontFamily: "Helvetica-Bold",
@@ -67,10 +67,20 @@ const styles = StyleSheet.create({
   },
 });
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({
+  title,
+  children,
+  keepTogether = false,
+}: {
+  title: string;
+  children: React.ReactNode;
+  keepTogether?: boolean;
+}) {
   return (
-    <View>
-      <Text style={styles.sectionTitle}>{title}</Text>
+    <View wrap={!keepTogether}>
+      <Text style={styles.sectionTitle} minPresenceAhead={30}>
+        {title}
+      </Text>
       {children}
     </View>
   );
@@ -121,7 +131,7 @@ function ResumePdf() {
           ))}
         </Section>
 
-        <Section title="Technical Skills">
+        <Section title="Technical Skills" keepTogether>
           {resume.skills.map((group) => (
             <Text key={group.category} style={styles.skillLine}>
               <Text style={styles.bold}>{group.category}: </Text>
